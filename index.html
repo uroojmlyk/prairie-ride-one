@@ -1,0 +1,2898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prairie Ride — Reliable Rides Across the Prairie</title>
+    <meta name="description" content="Premium airport transfers, local rides, corporate travel and long-distance transportation across Millbrook and surrounding areas." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --ink: #0b0d10;
+            --ink-700: #1e232a;
+            --ink-800: #15181c;
+            --ivory: #faf8f4;
+            --cream: #f3ede2;
+            --sand: #e6dfd0;
+            --brand: #f2b21a;
+            --brand-dark: #c99000;
+            --brand-soft: rgba(242, 178, 26, 0.08);
+            --muted: #5a5a5a;
+            --wa: #25d366;
+            --glass-bg: rgba(250, 248, 244, 0.85);
+            --shadow-heavy: 0 40px 90px -52px rgba(11, 13, 16, 0.5);
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5.5rem;
+            -webkit-tap-highlight-color: rgba(242, 178, 26, 0.22);
+        }
+        body {
+            background: var(--ivory);
+            color: var(--ink);
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        ::selection {
+            background: var(--brand);
+            color: var(--ink);
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            background: none;
+            border: 0;
+            font: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        .serif-italic {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+        .shell {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 6%;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 14px 26px;
+            font-size: .9rem;
+            font-weight: 600;
+            transition: all .3s cubic-bezier(.22, 1, .36, 1);
+            white-space: nowrap;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform .3s;
+        }
+        .btn:hover svg {
+            transform: translateX(3px);
+        }
+        .btn-primary {
+            background: var(--brand);
+            color: var(--ink);
+        }
+        .btn-primary:hover {
+            background: var(--brand-dark);
+            transform: translateY(-2px);
+        }
+        .btn-primary .glow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -z-index: -1;
+            border-radius: 50%;
+            background: rgba(242, 178, 26, 0.35);
+            filter: blur(24px);
+            width: 140px;
+            height: 140px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.25);
+            transition: opacity .4s, transform .4s;
+            pointer-events: none;
+        }
+        .btn-primary:hover .glow {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .btn-outline {
+            background: #fff;
+            border: 1.5px solid var(--sand);
+            color: var(--ink);
+        }
+        .btn-outline:hover {
+            border-color: var(--wa);
+            color: var(--wa);
+            transform: translateY(-2px);
+        }
+        .btn-glass {
+            background: rgba(255, 255, 255, .08);
+            border: 1.5px solid rgba(255, 255, 255, .28);
+            color: #fff;
+            backdrop-filter: blur(6px);
+        }
+        .btn-glass:hover {
+            border-color: var(--brand);
+            background: rgba(242, 178, 26, .12);
+            transform: translateY(-2px);
+        }
+        .btn-dark {
+            background: var(--ink);
+            color: #fff;
+        }
+        .btn-dark:hover {
+            background: var(--ink-700);
+            transform: translateY(-2px);
+        }
+        .btn-dark .glow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -z-index: -1;
+            border-radius: 50%;
+            background: rgba(242, 178, 26, 0.25);
+            filter: blur(24px);
+            width: 140px;
+            height: 140px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.25);
+            transition: opacity .4s, transform .4s;
+            pointer-events: none;
+        }
+        .btn-dark:hover .glow {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .icon-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 1.5px solid var(--sand);
+            background: #fff;
+            color: var(--ink);
+            transition: all .3s;
+        }
+        .icon-circle:hover {
+            border-color: var(--wa);
+            color: var(--wa);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(250, 248, 244, .85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(230, 223, 208, .7);
+            transition: box-shadow .4s, background .4s;
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+        header.scrolled {
+            box-shadow: 0 10px 40px -28px rgba(11, 13, 16, 0.45);
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            width: 100%;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .logo svg {
+            width: 30px;
+            height: 30px;
+            color: var(--brand-dark);
+        }
+        .logo span {
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -.03em;
+            color: var(--ink);
+        }
+        .logo .accent {
+            color: var(--brand);
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 28px;
+            margin-left: auto;
+        }
+        nav.main-nav a {
+            font-size: .9rem;
+            font-weight: 500;
+            color: rgba(11, 13, 16, .7);
+            transition: color .3s;
+            position: relative;
+        }
+        nav.main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--brand);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s;
+        }
+        nav.main-nav a:hover {
+            color: var(--brand-dark);
+        }
+        nav.main-nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .header-tel {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .86rem;
+            font-weight: 600;
+            color: rgba(11, 13, 16, .75);
+            padding: 8px 10px;
+            transition: color .3s;
+        }
+        .header-tel:hover {
+            color: var(--brand-dark);
+        }
+        .header-tel svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1.5px solid var(--sand);
+            background: #fff;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+        }
+        .menu-toggle:hover {
+            border-color: var(--brand);
+        }
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        #mobileNav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--ivory);
+            z-index: 49;
+            padding: 20px 6% 30px;
+            overflow-y: auto;
+        }
+        #mobileNav.open {
+            display: block;
+        }
+        #mobileNav a {
+            display: block;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--sand);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--ink);
+            transition: color .3s;
+        }
+        #mobileNav a:hover {
+            color: var(--brand-dark);
+        }
+        #mobileNav .btn {
+            margin-top: 16px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 660px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            background: var(--ink);
+            padding-top: 72px;
+        }
+        .hero-slides {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity .9s ease;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-slides::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(100deg, rgba(11, 13, 16, .94) 0%, rgba(11, 13, 16, .78) 38%, rgba(11, 13, 16, .32) 70%, rgba(11, 13, 16, .5) 100%);
+            z-index: 1;
+        }
+        .hero-slides::before {
+            content: '';
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 220px;
+            z-index: 1;
+            background: linear-gradient(0deg, var(--ink), transparent);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 40px 0 50px;
+            cursor: grab;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .hero-inner:active {
+            cursor: grabbing;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(242, 178, 26, .35);
+            background: rgba(242, 178, 26, .12);
+            color: var(--brand);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            padding: 7px 15px;
+            backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-size: clamp(2.1rem, 5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.06;
+            color: #fff;
+            margin: 20px 0 18px;
+            max-width: 680px;
+            letter-spacing: -.02em;
+        }
+        .hero h1 span {
+            color: var(--brand);
+        }
+        .hero p {
+            max-width: 560px;
+            color: rgba(255, 255, 255, .8);
+            font-size: 1.02rem;
+            line-height: 1.65;
+            margin-bottom: 32px;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-feats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin-top: 38px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, .14);
+        }
+        .hero-feats span {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .82rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .78);
+        }
+        .hero-feats .feat-ic {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .06);
+            color: var(--brand);
+        }
+        .hero-feats .feat-ic svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hero-nav-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 44px;
+        }
+        .hero-dots {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .hero-dots button {
+            padding: 8px 0;
+        }
+        .hero-dots span {
+            display: block;
+            height: 3px;
+            width: 18px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, .3);
+            transition: all .35s;
+        }
+        .hero-dots button.active span {
+            width: 36px;
+            background: var(--brand);
+        }
+        .hero-count {
+            margin-left: 6px;
+            font-family: monospace;
+            font-size: .72rem;
+            letter-spacing: .15em;
+            color: rgba(255, 255, 255, .45);
+        }
+        .hero-arrows {
+            display: flex;
+            gap: 10px;
+        }
+        .hero-arrows button {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .28);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            transition: all .3s;
+        }
+        .hero-arrows button:hover {
+            border-color: var(--brand);
+            color: var(--brand);
+            background: rgba(242, 178, 26, .14);
+        }
+        .hero-arrows svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== BOOKING CARD ===== */
+        .booking-wrap {
+            position: relative;
+            z-index: 20;
+            background: var(--ivory);
+            padding-bottom: 60px;
+        }
+        .booking-card {
+            margin-top: -70px;
+            background: #fff;
+            border: 1px solid var(--sand);
+            border-radius: 28px;
+            padding: 34px 28px;
+            box-shadow: 0 40px 90px -52px rgba(11, 13, 16, .5);
+        }
+        .booking-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .booking-head h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            margin: 0;
+        }
+        .booking-head p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: .88rem;
+        }
+        .dispatch-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+        .dispatch-pill i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--wa);
+            display: inline-block;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px 18px;
+            margin-top: 28px;
+        }
+        .f-col-4 {
+            grid-column: span 4;
+        }
+        .f-col-3 {
+            grid-column: span 3;
+        }
+        .f-col-2 {
+            grid-column: span 2;
+        }
+        .f-col-5 {
+            grid-column: span 5;
+        }
+        .f-col-12 {
+            grid-column: span 12;
+        }
+
+        .field-label {
+            display: block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            color: var(--muted);
+            margin-bottom: 7px;
+            text-transform: uppercase;
+        }
+        .field-wrap {
+            position: relative;
+        }
+        .field-wrap .f-ic {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 17px;
+            height: 17px;
+            color: var(--muted);
+            pointer-events: none;
+        }
+        .field-input {
+            width: 100%;
+            border: 1.5px solid var(--sand);
+            background: var(--ivory);
+            border-radius: 12px;
+            padding: 13px 14px 13px 40px;
+            font-size: .88rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color .2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select.field-input {
+            cursor: pointer;
+        }
+        .field-input:focus {
+            border-color: var(--brand);
+        }
+        .field-chevron {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            color: var(--muted);
+            pointer-events: none;
+        }
+
+        .booking-submit-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .form-msg {
+            font-size: .82rem;
+            color: var(--brand-dark);
+            margin-top: 4px;
+            min-height: 16px;
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-strip {
+            background: var(--ink);
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .marquee-strip::before,
+        .marquee-strip::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .marquee-strip::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--ink), transparent);
+        }
+        .marquee-strip::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--ink), transparent);
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 32s linear infinite;
+        }
+        .marquee-track .item {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding-right: 32px;
+            white-space: nowrap;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .55);
+            flex-shrink: 0;
+        }
+        .marquee-track .item i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--brand);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ===== SECTION GENERIC ===== */
+        section {
+            padding: 88px 0;
+        }
+        .eyebrow {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--brand-dark);
+        }
+        .eyebrow.light {
+            color: var(--brand);
+        }
+        h2.sec-title {
+            font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            margin: 14px 0 0;
+        }
+        .sec-head {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+        }
+        .sec-sub {
+            max-width: 400px;
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-layout {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 32px;
+            margin-top: 52px;
+        }
+        .feature-card {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 36px;
+            transition: box-shadow .5s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 0 0 2px rgba(242, 178, 26, .4);
+        }
+        .feature-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(11, 13, 16, .15) 0%, rgba(11, 13, 16, .72) 55%, rgba(11, 13, 16, .95) 100%);
+            z-index: 1;
+        }
+        .feature-card-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+        .feature-card-content h3 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin: 12px 0 10px;
+        }
+        .feature-card-content p {
+            color: rgba(255, 255, 255, .78);
+            font-size: .92rem;
+            line-height: 1.7;
+            max-width: 380px;
+        }
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 22px;
+            margin: 20px 0 0;
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .85);
+        }
+        .feature-list svg {
+            width: 15px;
+            height: 15px;
+            color: var(--brand);
+        }
+        .feature-card-content>a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 26px;
+            font-weight: 700;
+            color: var(--brand);
+            font-size: .9rem;
+            transition: gap .3s;
+        }
+        .feature-card-content>a:hover {
+            gap: 14px;
+        }
+        .feature-card-content>a svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .service-rows {
+            border: 1px solid var(--sand);
+            border-radius: 28px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .service-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px 26px;
+            border-bottom: 1px solid var(--sand);
+            transition: background .25s;
+            position: relative;
+            cursor: pointer;
+        }
+        .service-row:last-child {
+            border-bottom: 0;
+        }
+        .service-row:hover {
+            background: rgba(242, 178, 26, .06);
+        }
+        .service-row::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--brand);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform .3s;
+        }
+        .service-row:hover::before {
+            transform: scaleY(1);
+        }
+        .service-row .s-icon {
+            width: 44px;
+            height: 44px;
+            flex: none;
+            border-radius: 12px;
+            border: 1px solid var(--sand);
+            background: var(--ivory);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-dark);
+        }
+        .service-row .s-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        .service-row h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+        .service-row p {
+            font-size: .86rem;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+        .service-row .s-arrow {
+            margin-left: auto;
+            color: rgba(11, 13, 16, .25);
+            transition: color .3s;
+        }
+        .service-row:hover .s-arrow {
+            color: var(--brand-dark);
+        }
+        .service-row .s-arrow svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== FLEET ===== */
+        .fleet-sec {
+            background: var(--ink);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .fleet-sec .grain {
+            position: absolute;
+            inset: 0;
+            opacity: .7;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 26px;
+            margin-top: 52px;
+        }
+        .fleet-card {
+            background: var(--ink-800);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: border-color .35s, box-shadow .35s;
+            display: flex;
+            flex-direction: column;
+        }
+        .fleet-card:hover {
+            border-color: rgba(242, 178, 26, .4);
+            box-shadow: 0 0 0 1px rgba(242, 178, 26, .15);
+        }
+        .fleet-img-wrap {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+        .fleet-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .fleet-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 45%, rgba(11, 13, 16, .65) 100%);
+        }
+        .fleet-tag {
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            z-index: 2;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .9);
+            background: rgba(11, 13, 16, .6);
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 999px;
+            padding: 6px 12px;
+            backdrop-filter: blur(4px);
+        }
+        .fleet-body {
+            padding: 24px 26px 26px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .fleet-body h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        .fleet-meta {
+            display: flex;
+            gap: 18px;
+            margin: 12px 0;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            font-weight: 500;
+        }
+        .fleet-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fleet-meta svg {
+            width: 15px;
+            height: 15px;
+            color: var(--brand);
+        }
+        .fleet-body>p {
+            color: rgba(255, 255, 255, .62);
+            font-size: .88rem;
+            line-height: 1.65;
+            margin: 0 0 20px;
+            flex: 1;
+        }
+        .fleet-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding-top: 18px;
+        }
+        .fleet-foot a.book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--brand);
+            font-weight: 700;
+            font-size: .88rem;
+            transition: gap .3s;
+        }
+        .fleet-foot a.book-link:hover {
+            gap: 14px;
+        }
+        .fleet-foot a.book-link svg {
+            width: 15px;
+            height: 15px;
+        }
+        .wa-round {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .6);
+            transition: all .3s;
+        }
+        .wa-round:hover {
+            border-color: var(--wa);
+            color: var(--wa);
+        }
+        .wa-round svg {
+            width: 16px;
+            height: 16px;
+        }
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 999px;
+            padding: 14px 24px;
+            font-weight: 700;
+            font-size: .88rem;
+            color: #fff;
+            transition: all .3s;
+        }
+        .view-all-link:hover {
+            border-color: var(--brand);
+            color: var(--brand);
+            transform: translateY(-2px);
+        }
+        .view-all-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-sec {
+            background: var(--cream);
+        }
+        .steps-row {
+            position: relative;
+            margin-top: 56px;
+        }
+        .steps-row::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 6px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--brand), var(--sand) 70%, transparent);
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 36px;
+        }
+        .step {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            border: 1px solid var(--sand);
+            background: var(--ivory);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .85rem;
+            color: var(--brand-dark);
+            transition: all .3s;
+            flex-shrink: 0;
+        }
+        .step:hover .step-num {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: var(--ink);
+        }
+        .step h3 {
+            font-size: 1.14rem;
+            font-weight: 700;
+            margin: 6px 0 6px;
+        }
+        .step p {
+            font-size: .88rem;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 220px;
+            margin: 0;
+        }
+
+        /* ===== SERVICE AREA ===== */
+        .area-layout {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 56px;
+            align-items: center;
+            margin-top: 0;
+        }
+        .area-copy p {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.75;
+            max-width: 400px;
+        }
+        .area-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0 0;
+            border-top: 1px solid var(--sand);
+            border-bottom: 1px solid var(--sand);
+        }
+        .area-list li {
+            border-bottom: 1px solid var(--sand);
+        }
+        .area-list li:last-child {
+            border-bottom: 0;
+        }
+        .area-list button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 15px 2px;
+            text-align: left;
+            transition: background .2s;
+            border-radius: 4px;
+        }
+        .area-list button:hover {
+            background: rgba(242, 178, 26, .04);
+        }
+        .area-list .a-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .area-list .a-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid var(--sand);
+            background: #fff;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+        }
+        .area-list .a-dot svg {
+            width: 14px;
+            height: 14px;
+        }
+        .area-list button.active .a-dot {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: var(--ink);
+        }
+        .area-list .a-name {
+            font-size: .95rem;
+            font-weight: 600;
+            color: rgba(11, 13, 16, .65);
+            transition: color .3s;
+        }
+        .area-list button.active .a-name {
+            color: var(--ink);
+        }
+        .area-list .a-dist {
+            font-size: .8rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .map-panel {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--ink);
+            border: 1px solid rgba(11, 13, 16, .1);
+        }
+        .map-svg-wrap {
+            position: relative;
+            aspect-ratio: 800/520;
+            width: 100%;
+        }
+        .map-svg-wrap svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .map-pin {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+        .map-pin .dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(255, 255, 255, .35);
+            background: rgba(11, 13, 16, .8);
+            color: rgba(255, 255, 255, .7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+        }
+        .map-pin .dot svg {
+            width: 11px;
+            height: 11px;
+        }
+        .map-pin.active .dot {
+            width: 34px;
+            height: 34px;
+            border-color: var(--brand);
+            background: var(--brand);
+            color: var(--ink);
+            box-shadow: 0 0 0 8px rgba(242, 178, 26, .18);
+        }
+        .map-pin .inner-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: currentColor;
+        }
+        .map-legend {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 24px;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding: 16px 22px;
+            color: rgba(255, 255, 255, .55);
+            font-size: .72rem;
+            font-weight: 500;
+        }
+        .map-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .leg-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--brand);
+        }
+        .leg-ring {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .4);
+        }
+        .leg-line {
+            width: 22px;
+            height: 0;
+            border-top: 1px dashed var(--brand);
+        }
+        .map-legend .showing {
+            margin-left: auto;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        /* ===== TRUST STATS ===== */
+        .trust-sec {
+            background: var(--ink-800);
+            color: #fff;
+            position: relative;
+        }
+        .trust-sec .grain {
+            position: absolute;
+            inset: 0;
+            opacity: .6;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            margin-top: 48px;
+            padding: 40px 0;
+        }
+        .trust-stats>div {
+            padding: 0 22px;
+            border-left: 1px solid rgba(255, 255, 255, .1);
+        }
+        .trust-stats>div:first-child {
+            border-left: 0;
+        }
+        .trust-stats .num {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -.02em;
+        }
+        .trust-stats .num span {
+            color: var(--brand);
+        }
+        .trust-stats .lbl {
+            margin-top: 10px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            font-weight: 500;
+        }
+        .trust-feats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 36px;
+            margin-top: 38px;
+        }
+        .trust-feats span {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .88rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .75);
+        }
+        .trust-feats .t-ic {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand);
+        }
+        .trust-feats .t-ic svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .rating-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--sand);
+            background: #fff;
+            border-radius: 18px;
+            padding: 16px 20px;
+        }
+        .rating-card .big {
+            font-size: 1.9rem;
+            font-weight: 800;
+        }
+        .rating-card .stars {
+            display: flex;
+            gap: 2px;
+            color: var(--brand);
+        }
+        .rating-card .stars svg {
+            width: 15px;
+            height: 15px;
+        }
+        .rating-card small {
+            display: block;
+            margin-top: 4px;
+            font-size: .72rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        .t-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 52px;
+        }
+        .t-card {
+            background: #fff;
+            border: 1px solid var(--sand);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: all .35s;
+        }
+        .t-card:hover {
+            border-color: rgba(242, 178, 26, .4);
+            box-shadow: 0 30px 70px -45px rgba(11, 13, 16, .45);
+        }
+        .t-card .stars {
+            display: flex;
+            gap: 3px;
+            color: var(--brand);
+        }
+        .t-card .stars svg {
+            width: 15px;
+            height: 15px;
+        }
+        .t-card blockquote {
+            margin: 18px 0 0;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.55;
+            color: rgba(11, 13, 16, .85);
+            flex: 1;
+        }
+        .t-foot {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-top: 1px solid var(--sand);
+            padding-top: 22px;
+            margin-top: 26px;
+        }
+        .t-avatar {
+            width: 44px;
+            height: 44px;
+            flex: none;
+            border-radius: 999px;
+            background: #fdf1cf;
+            border: 1px solid rgba(242, 178, 26, .35);
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .78rem;
+        }
+        .t-foot .t-name {
+            font-size: .92rem;
+            font-weight: 700;
+        }
+        .t-foot .t-role {
+            font-size: .76rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-sec {
+            background: var(--cream);
+        }
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 4fr 8fr;
+            gap: 60px;
+        }
+        .faq-side p {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+        .faq-side .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid var(--sand);
+            border-bottom: 1px solid var(--sand);
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--sand);
+        }
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+        .faq-q {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 22px 2px;
+            text-align: left;
+        }
+        .faq-q span.qtext {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .faq-q .qicon {
+            flex: none;
+            margin-top: 2px;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid var(--sand);
+            background: #fff;
+            color: rgba(11, 13, 16, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s;
+            position: relative;
+        }
+        .faq-q .qicon::before,
+        .faq-q .qicon::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            border-radius: 2px;
+        }
+        .faq-q .qicon::before {
+            width: 13px;
+            height: 1.5px;
+        }
+        .faq-q .qicon::after {
+            width: 1.5px;
+            height: 13px;
+            transition: transform .3s;
+        }
+        .faq-item.open .qicon {
+            border-color: var(--brand);
+            background: var(--brand);
+            color: var(--ink);
+        }
+        .faq-item.open .qicon::after {
+            transform: scaleY(0);
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+        }
+        .faq-a-in {
+            padding: 0 40px 24px 2px;
+            font-size: .92rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .cta-outer {
+            padding-bottom: 88px;
+        }
+        .cta-box {
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            padding: 80px 6%;
+            background: var(--ink);
+        }
+        .cta-box img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(105deg, rgba(11, 13, 16, .95) 0%, rgba(11, 13, 16, .8) 45%, rgba(11, 13, 16, .45) 100%);
+        }
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+        }
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.05;
+            margin: 16px 0 18px;
+            letter-spacing: -.02em;
+        }
+        .cta-content h2 span {
+            color: var(--brand);
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+        .cta-content>p {
+            color: rgba(255, 255, 255, .75);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 460px;
+        }
+        .cta-btns {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            margin-top: 34px;
+        }
+        .cta-btns .tel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 700;
+            font-size: .92rem;
+            color: rgba(255, 255, 255, .85);
+            transition: color .3s;
+        }
+        .cta-btns .tel-link:hover {
+            color: var(--brand);
+        }
+        .cta-btns .tel-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, .65);
+            padding: 64px 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 52px;
+        }
+        .footer-brand p {
+            margin-top: 18px;
+            max-width: 280px;
+            font-size: .88rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5);
+        }
+        .footer-brand address {
+            margin-top: 22px;
+            font-style: normal;
+            font-size: .86rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, .5);
+        }
+        footer h4 {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .38);
+            margin: 0 0 18px;
+        }
+        footer .flinks {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        footer .flinks li {
+            margin-bottom: 13px;
+        }
+        footer .flinks a {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .62);
+            transition: color .3s;
+        }
+        footer .flinks a:hover {
+            color: var(--brand);
+        }
+        footer .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        footer .contact-list li {
+            margin-bottom: 13px;
+        }
+        footer .contact-list a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .62);
+            transition: color .3s;
+        }
+        footer .contact-list a:hover {
+            color: var(--brand);
+        }
+        footer .contact-list svg {
+            width: 15px;
+            height: 15px;
+            color: var(--brand);
+        }
+        .hours-dl {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .hours-dl div {
+            display: flex;
+            justify-content: space-between;
+            font-size: .8rem;
+        }
+        .hours-dl dt {
+            color: rgba(255, 255, 255, .35);
+        }
+        .hours-dl dd {
+            margin: 0;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .62);
+        }
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+        .footer-socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .6);
+            transition: all .3s;
+        }
+        .footer-socials a:hover {
+            border-color: var(--brand);
+            color: var(--brand);
+        }
+        .footer-socials svg {
+            width: 16px;
+            height: 16px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            padding: 22px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .35);
+        }
+
+        /* ===== CURSOR GLOW ===== */
+        .cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 85;
+            overflow: hidden;
+        }
+        .cursor-glow .dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(242, 178, 26, 0.2);
+            filter: blur(12px);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: width 0.15s, height 0.15s, opacity 0.15s;
+        }
+        .cursor-glow .dot.lead {
+            background: rgba(242, 178, 26, 0.5);
+            filter: blur(6px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-layout,
+            .area-layout,
+            .faq-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .fleet-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 36px;
+            }
+            .steps-row::before {
+                display: none;
+            }
+            .trust-stats {
+                grid-template-columns: repeat(3, 1fr);
+                row-gap: 26px;
+            }
+            .trust-stats>div:nth-child(3n+1) {
+                border-left: 0;
+            }
+            .t-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            nav.main-nav,
+            .header-tel {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero {
+                min-height: 600px;
+            }
+            .hero-feats {
+                gap: 18px;
+            }
+            .booking-card {
+                padding: 24px 18px;
+                border-radius: 22px;
+            }
+            .booking-grid {
+                gap: 14px;
+            }
+            .f-col-4,
+            .f-col-3,
+            .f-col-2,
+            .f-col-5 {
+                grid-column: span 12;
+            }
+            .booking-submit-row .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .services-layout {
+                gap: 24px;
+            }
+            .feature-card {
+                min-height: 400px;
+                padding: 26px;
+            }
+            .fleet-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .trust-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .t-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-a-in {
+                padding-right: 10px;
+            }
+            .cta-box {
+                padding: 56px 6%;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .map-legend .showing {
+                margin-left: 0;
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+            .hero-inner {
+                padding: 20px 0 30px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .focus\:not-sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: inherit;
+            margin: inherit;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+        .focus\:fixed:focus {
+            position: fixed;
+        }
+        .focus\:left-4:focus {
+            left: 1rem;
+        }
+        .focus\:top-4:focus {
+            top: 1rem;
+        }
+        .focus\:z-\[100\]:focus {
+            z-index: 100;
+        }
+        .focus\:rounded-full:focus {
+            border-radius: 9999px;
+        }
+        .focus\:bg-ink:focus {
+            background: var(--ink);
+        }
+        .focus\:px-5:focus {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+        .focus\:py-3:focus {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        .focus\:text-sm:focus {
+            font-size: 0.875rem;
+        }
+        .focus\:font-semibold:focus {
+            font-weight: 600;
+        }
+        .focus\:text-white:focus {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SKIP LINK ===== -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white">Skip to content</a>
+
+    <!-- ===== CURSOR GLOW ===== -->
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true">
+        <span class="dot" style="width:46px;height:46px;left:0;top:0;opacity:0"></span>
+        <span class="dot" style="width:34px;height:34px;left:0;top:0;opacity:0"></span>
+        <span class="dot lead" style="width:22px;height:22px;left:0;top:0;opacity:0"></span>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="siteHeader">
+        <div class="shell header-row">
+            <a class="logo" href="#home">
+                <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" fill="currentColor" opacity=".1"/><path d="M5 21.5c3.5-6 7-9 11-9s6.5 2 8 5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="M11 26c1.6-3.4 3.6-5.6 6-6.6" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity=".45"/><circle cx="24" cy="10.5" r="3" fill="currentColor"/></svg>
+                <span>Prairie<span class="accent">Ride</span></span>
+            </a>
+            <nav class="main-nav" aria-label="Main">
+                <a href="#services">Services</a>
+                <a href="#fleet">Fleet</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#service-areas">Service Areas</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="header-actions">
+                <a class="header-tel" href="tel:+13065550142">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 3.5h2.4l1.5 3.7-1.9 1.3a10.8 10.8 0 0 0 5.3 5.3l1.3-1.9 3.7 1.5v2.4a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+                    +1 (306) 555-0142
+                </a>
+                <a class="icon-circle" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.02c-1.5 0-2.92-.4-4.16-1.1l-.3-.18-3.14.8.82-3.06-.2-.32a8.02 8.02 0 0 1-1.24-4.28c0-4.44 3.6-8.04 8.04-8.04 4.44 0 8.04 3.6 8.04 8.04 0 4.44-3.62 8.14-7.86 8.14Zm4.5-5.9c-.24-.12-1.46-.72-1.68-.8-.22-.08-.38-.12-.54.12-.16.24-.62.8-.76.96-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.38.1-.5.12-.12.26-.3.38-.46.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.24 1.02.38 1.38.5.6.18 1.14.16 1.56.1.46-.08 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>
+                </a>
+                <a class="btn btn-primary" href="#booking">
+                    <span class="glow"></span>
+                    Book a Ride
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                </a>
+                <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h16M4 12.5h16M4 17.5h10"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MOBILE NAV ===== -->
+    <div id="mobileNav">
+        <a href="#services" onclick="toggleMobileNav()">Services</a>
+        <a href="#fleet" onclick="toggleMobileNav()">Fleet</a>
+        <a href="#how-it-works" onclick="toggleMobileNav()">How It Works</a>
+        <a href="#service-areas" onclick="toggleMobileNav()">Service Areas</a>
+        <a href="#faq" onclick="toggleMobileNav()">FAQ</a>
+        <a href="tel:+13065550142" onclick="toggleMobileNav()">+1 (306) 555-0142</a>
+        <a class="btn btn-primary" href="#booking" onclick="toggleMobileNav()">Book a Ride</a>
+    </div>
+
+    <!-- ===== MAIN ===== -->
+    <main id="main">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="home" aria-roledescription="carousel" aria-label="Prairie Ride services">
+            <div class="hero-slides" id="heroSlides">
+                <div class="hero-slide active"><img src="taxi7.jpg" alt="Prairie Ride airport pickup"></div>
+                <div class="hero-slide"><img src="taxi1.jpg" alt="Prairie Ride at night"></div>
+                <div class="hero-slide"><img src="taxi2.jpg" alt="Prairie Ride corporate travel"></div>
+            </div>
+            <div class="shell hero-inner">
+                <div class="hero-badge" id="heroEyebrow">Airport Transfers</div>
+                <h1 id="heroTitle">Reliable Airport Rides, <span>Every Time.</span></h1>
+                <p id="heroDesc">Comfortable, dependable transportation with professional drivers — flight-tracked pickups to and from Saskatoon (YXE).</p>
+                <div class="hero-btns">
+                    <a class="btn btn-primary" href="#booking">
+                        <span class="glow"></span>
+                        Book Your Ride
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                    </a>
+                    <a class="btn btn-glass" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="color:var(--wa)"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.02c-1.5 0-2.92-.4-4.16-1.1l-.3-.18-3.14.8.82-3.06-.2-.32a8.02 8.02 0 0 1-1.24-4.28c0-4.44 3.6-8.04 8.04-8.04 4.44 0 8.04 3.6 8.04 8.04 0 4.44-3.62 8.14-7.86 8.14Zm4.5-5.9c-.24-.12-1.46-.72-1.68-.8-.22-.08-.38-.12-.54.12-.16.24-.62.8-.76.96-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.38.1-.5.12-.12.26-.3.38-.46.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.24 1.02.38 1.38.5.6.18 1.14.16 1.56.1.46-.08 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>
+                        WhatsApp Us
+                    </a>
+                </div>
+                <div class="hero-feats">
+                    <span><span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20.5c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/><path d="M8.6 5.6C9.4 3.9 10.6 3 12 3s2.6.9 3.4 2.6"/></svg></span>Professional Drivers</span>
+                    <span><span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>On-Time Service</span>
+                    <span><span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="2.8" y="13.5" width="3.6" height="6" rx="1.8"/><rect x="17.6" y="13.5" width="3.6" height="6" rx="1.8"/><path d="M19.4 19.5c0 1.4-1.6 2.2-3.4 2.2"/></svg></span>24/7 Dispatch</span>
+                </div>
+                <div class="hero-nav-row">
+                    <div class="hero-dots" id="heroDots">
+                        <button class="active" onclick="goSlide(0)"><span></span></button>
+                        <button onclick="goSlide(1)"><span></span></button>
+                        <button onclick="goSlide(2)"><span></span></button>
+                        <span class="hero-count" id="heroCount">01 / 03</span>
+                    </div>
+                    <div class="hero-arrows">
+                        <button onclick="prevSlide()" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button>
+                        <button onclick="nextSlide()" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BOOKING ===== -->
+        <div class="booking-wrap" id="booking">
+            <div class="shell">
+                <div class="booking-card">
+                    <div class="booking-head">
+                        <div>
+                            <h2>Plan Your Ride</h2>
+                            <p>Instant demo estimate — no account, no card, no waiting.</p>
+                        </div>
+                        <p class="dispatch-pill"><i></i>Dispatch online now</p>
+                    </div>
+
+                    <form id="bookingForm" novalidate>
+                        <div class="booking-grid">
+                            <div class="f-col-4">
+                                <label class="field-label" for="pickup">Pickup Location</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+                                    <input class="field-input" id="pickup" list="pr-locations" placeholder="Enter pickup location" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="f-col-4">
+                                <label class="field-label" for="destination">Destination</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4.5"/><path d="M6 5h9.5l-1.4 3.2 1.4 3.3H6"/></svg>
+                                    <input class="field-input" id="destination" list="pr-locations" placeholder="Enter destination" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="f-col-2">
+                                <label class="field-label" for="date">Date</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3.5v3M16 3.5v3"/></svg>
+                                    <input class="field-input" id="date" type="date" required>
+                                </div>
+                            </div>
+                            <div class="f-col-2">
+                                <label class="field-label" for="time">Time</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+                                    <input class="field-input" id="time" type="time" required value="09:30">
+                                </div>
+                            </div>
+                            <div class="f-col-3">
+                                <label class="field-label" for="passengers">Passengers</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.6a3 3 0 0 1 0 5.8M17 14.8c2 .6 3.5 2.3 3.5 4.7"/></svg>
+                                    <select class="field-input" id="passengers">
+                                        <option value="1">1 passenger</option>
+                                        <option value="2" selected>2 passengers</option>
+                                        <option value="3">3 passengers</option>
+                                        <option value="4">4 passengers</option>
+                                        <option value="5">5 passengers</option>
+                                        <option value="6">6 passengers</option>
+                                        <option value="7">7 passengers</option>
+                                    </select>
+                                    <svg class="field-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9l6.5 6.5L18.5 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="f-col-4">
+                                <label class="field-label" for="vehicle">Vehicle Type</label>
+                                <div class="field-wrap">
+                                    <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5V12l2-4.5A2 2 0 0 1 7.8 6h8.4A2 2 0 0 1 18 7.5L20 12v3.5"/><path d="M4 15.5h16M4.5 12h15"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/></svg>
+                                    <select class="field-input" id="vehicle">
+                                        <option value="sedan">Standard Sedan · 1–3</option>
+                                        <option value="executive">Executive Sedan · 1–3</option>
+                                        <option value="suv">All-Season SUV · 1–5</option>
+                                        <option value="van">Executive Van · up to 7</option>
+                                        <option value="accessible">Accessible Van · 4 + chair</option>
+                                    </select>
+                                    <svg class="field-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9l6.5 6.5L18.5 9"/></svg>
+                                </div>
+                            </div>
+                            <div class="f-col-5" style="display:flex;align-items:flex-end">
+                                <div class="booking-submit-row">
+                                    <button type="submit" class="btn btn-primary" id="bookBtn">
+                                        <span class="glow"></span>
+                                        Get Fare Estimate
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                                    </button>
+                                    <a class="btn btn-outline" id="waBookBtn" href="https://wa.me/13065550142" target="_blank" rel="noopener">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="color:var(--wa)"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.02c-1.5 0-2.92-.4-4.16-1.1l-.3-.18-3.14.8.82-3.06-.2-.32a8.02 8.02 0 0 1-1.24-4.28c0-4.44 3.6-8.04 8.04-8.04 4.44 0 8.04 3.6 8.04 8.04 0 4.44-3.62 8.14-7.86 8.14Zm4.5-5.9c-.24-.12-1.46-.72-1.68-.8-.22-.08-.38-.12-.54.12-.16.24-.62.8-.76.96-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.38.1-.5.12-.12.26-.3.38-.46.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.24 1.02.38 1.38.5.6.18 1.14.16 1.56.1.46-.08 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>
+                                        Book via WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="form-msg" id="formMsg"></p>
+                    </form>
+
+                    <datalist id="pr-locations">
+                        <option value="Millbrook">
+                        <option value="Fairview">
+                        <option value="Elmwood">
+                        <option value="Sunnyvale">
+                        <option value="Rosetown">
+                        <option value="Saskatoon">
+                        <option value="Saskatoon Airport (YXE)">
+                    </datalist>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MARQUEE ===== -->
+        <div class="marquee-strip">
+            <div class="marquee-track" id="marqueeTrack"></div>
+        </div>
+
+        <!-- ===== SERVICES ===== -->
+        <section id="services">
+            <div class="shell">
+                <div class="sec-head">
+                    <div>
+                        <span class="eyebrow">What We Do</span>
+                        <h2 class="sec-title">Every kind of ride, <span class="serif-italic" style="color:var(--brand-dark)">handled properly.</span></h2>
+                    </div>
+                    <p class="sec-sub">One local company, one standard of service — whether it is a 5am airport run or a board meeting across the province.</p>
+                </div>
+
+                <div class="services-layout">
+                    <div class="feature-card">
+                        <img src="taxi7.jpg" alt="Airport transfer">
+                        <div class="feature-card-content">
+                            <span class="eyebrow light">Most Booked</span>
+                            <h3>Airport Transfer</h3>
+                            <p>Flight-tracked pickups to Saskatoon John G. Diefenbaker (YXE) and back again. We watch the delays so you do not have to, and your driver is curbside when you land.</p>
+                            <ul class="feature-list">
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></svg>Flight tracking</li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></svg>Meet &amp; greet</li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></svg>60 min free wait time</li>
+                            </ul>
+                            <a href="#booking">Book an airport transfer
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="service-rows">
+                        <a class="service-row" href="#booking">
+                            <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+                            <div><h3>Local Rides</h3><p>Around town, across Millbrook, or over to the next community.</p></div>
+                            <span class="s-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></span>
+                        </a>
+                        <a class="service-row" href="#booking">
+                            <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12" rx="2.6"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/></svg></span>
+                            <div><h3>Corporate Travel</h3><p>Client pickups, team movements and monthly account billing.</p></div>
+                            <span class="s-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></span>
+                        </a>
+                        <a class="service-row" href="#booking">
+                            <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="2.6"/><circle cx="16" cy="9" r="2.6"/><path d="M3 19c0-2.5 2.2-4.2 5-4.2M21 19c0-2.5-2.2-4.2-5-4.2M9 19c0-1.9 1.3-3.2 3-3.2s3 1.3 3 3.2"/></svg></span>
+                            <div><h3>Group Transportation</h3><p>Up to seven seats with room for the gear that comes along.</p></div>
+                            <span class="s-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></span>
+                        </a>
+                        <a class="service-row" href="#booking">
+                            <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.6" r="1.8"/><path d="M9 8.5h6M12 8.5v5h4.5l2 5.5"/><circle cx="10.5" cy="16.5" r="4"/></svg></span>
+                            <div><h3>Accessible Transportation</h3><p>Ramp-equipped vehicles and drivers trained to assist.</p></div>
+                            <span class="s-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></span>
+                        </a>
+                        <a class="service-row" href="#booking">
+                            <span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6h4.5A3.5 3.5 0 0 1 16.5 9.5v0A3.5 3.5 0 0 1 13 13H8a2.5 2.5 0 0 0 0 5h7.5"/></svg></span>
+                            <div><h3>Long-Distance Rides</h3><p>Rosetown, Saskatoon and anywhere the highway goes.</p></div>
+                            <span class="s-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FLEET ===== -->
+        <section class="fleet-sec" id="fleet">
+            <div class="grain"></div>
+            <div class="shell">
+                <div class="sec-head">
+                    <div>
+                        <span class="eyebrow light">The Fleet</span>
+                        <h2 class="sec-title" style="color:#fff">A vehicle that suits <span class="serif-italic" style="color:var(--brand)">the trip.</span></h2>
+                        <p style="color:rgba(255,255,255,.6);font-size:.95rem;margin-top:8px;max-width:500px">Every vehicle is cleaned between rides, winter-ready from October, and driven by someone who has done this for years.</p>
+                    </div>
+                    <a class="view-all-link" href="#booking">View All Vehicles
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                    </a>
+                </div>
+
+                <div class="fleet-grid">
+                    <div class="fleet-card">
+                        <div class="fleet-img-wrap"><img src="taxi8.jpg" alt="Prairie Sedan"><span class="fleet-tag">Standard Sedan</span></div>
+                        <div class="fleet-body">
+                            <h3>Prairie Sedan</h3>
+                            <div class="fleet-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>1–3 passengers</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7.5" width="14" height="12.5" rx="2.5"/><path d="M9.5 7.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2.5"/></svg>2 bags</span>
+                            </div>
+                            <p>Our everyday ride. Quiet, clean and the most economical way to get to the airport.</p>
+                            <div class="fleet-foot">
+                                <a class="book-link" href="#booking">Book This Vehicle<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg></a>
+                                <a class="wa-round" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20enquire%20about%20the%20Prairie%20Sedan." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fleet-card">
+                        <div class="fleet-img-wrap"><img src="taxi9.jpg" alt="Executive Sedan"><span class="fleet-tag">Business Class</span></div>
+                        <div class="fleet-body">
+                            <h3>Executive Sedan</h3>
+                            <div class="fleet-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>1–3 passengers</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7.5" width="14" height="12.5" rx="2.5"/><path d="M9.5 7.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2.5"/></svg>3 bags</span>
+                            </div>
+                            <p>A quieter cabin and a little more polish for client pickups and evening events.</p>
+                            <div class="fleet-foot">
+                                <a class="book-link" href="#booking">Book This Vehicle<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg></a>
+                                <a class="wa-round" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20enquire%20about%20the%20Executive%20Sedan." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fleet-card">
+                        <div class="fleet-img-wrap"><img src="taxi10.jpg" alt="All-Season SUV"><span class="fleet-tag">SUV</span></div>
+                        <div class="fleet-body">
+                            <h3>All-Season SUV</h3>
+                            <div class="fleet-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>1–5 passengers</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7.5" width="14" height="12.5" rx="2.5"/><path d="M9.5 7.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2.5"/></svg>4 bags</span>
+                            </div>
+                            <p>Winter tyres, all-wheel drive and the head room to make a long highway leg feel short.</p>
+                            <div class="fleet-foot">
+                                <a class="book-link" href="#booking">Book This Vehicle<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg></a>
+                                <a class="wa-round" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20enquire%20about%20the%20All-Season%20SUV." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fleet-card">
+                        <div class="fleet-img-wrap"><img src="taxi11.jpg" alt="Executive Van"><span class="fleet-tag">Van</span></div>
+                        <div class="fleet-body">
+                            <h3>Executive Van</h3>
+                            <div class="fleet-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>Up to 7 passengers</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7.5" width="14" height="12.5" rx="2.5"/><path d="M9.5 7.5V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2.5"/></svg>6 bags</span>
+                            </div>
+                            <p>One vehicle, one fare, the whole group — with a luggage hold that actually fits the hockey bags.</p>
+                            <div class="fleet-foot">
+                                <a class="book-link" href="#booking">Book This Vehicle<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg></a>
+                                <a class="wa-round" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20enquire%20about%20the%20Executive%20Van." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HOW IT WORKS ===== -->
+        <section class="how-sec" id="how-it-works">
+            <div class="shell">
+                <span class="eyebrow">How It Works</span>
+                <h2 class="sec-title">Four steps, <span class="serif-italic" style="color:var(--brand-dark)">one ride.</span></h2>
+
+                <div class="steps-row">
+                    <div class="steps-grid">
+                        <div class="step">
+                            <div class="step-num">01</div>
+                            <div><h3>Choose Your Ride</h3><p>Pick the vehicle that fits your group, luggage and budget.</p></div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">02</div>
+                            <div><h3>Share Trip Details</h3><p>Pickup, destination, date and time — online or over WhatsApp.</p></div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">03</div>
+                            <div><h3>Confirm Booking</h3><p>Dispatch confirms your driver and fare by text within minutes.</p></div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">04</div>
+                            <div><h3>Enjoy Your Ride</h3><p>Your driver arrives early, tracks your flight and handles the bags.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SERVICE AREAS ===== -->
+        <section id="service-areas">
+            <div class="shell">
+                <div class="area-layout">
+                    <div class="area-copy">
+                        <span class="eyebrow">Service Area</span>
+                        <h2 class="sec-title">Proudly Serving Millbrook &amp; <span class="serif-italic" style="color:var(--brand-dark)">Surrounding Areas</span></h2>
+                        <p>Based in Millbrook, driving the whole region — plus daily runs to Saskatoon and the airport. Select a community to see the route.</p>
+
+                        <ul class="area-list" id="areaList">
+                            <li><button class="active" data-pin="millbrook" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Millbrook</span></span>
+                                <span class="a-dist">Home base · 24/7 dispatch</span>
+                            </button></li>
+                            <li><button data-pin="fairview" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Fairview</span></span>
+                                <span class="a-dist">18 km · 20 min</span>
+                            </button></li>
+                            <li><button data-pin="elmwood" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Elmwood</span></span>
+                                <span class="a-dist">27 km · 28 min</span>
+                            </button></li>
+                            <li><button data-pin="sunnyvale" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Sunnyvale</span></span>
+                                <span class="a-dist">34 km · 33 min</span>
+                            </button></li>
+                            <li><button data-pin="rosetown" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Rosetown</span></span>
+                                <span class="a-dist">62 km · 48 min</span>
+                            </button></li>
+                            <li><button data-pin="saskatoon" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="a-name">Saskatoon</span></span>
+                                <span class="a-dist">74 km · 55 min</span>
+                            </button></li>
+                            <li><button data-pin="airport" onclick="selectArea(this)">
+                                <span class="a-left"><span class="a-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.5l18-6.5-4 12-3.5-4.2L21 7 9.8 12.4 3 13.5Z"/></svg></span><span class="a-name">Saskatoon Airport (YXE)</span></span>
+                                <span class="a-dist">42 km · 40 min</span>
+                            </button></li>
+                        </ul>
+                    </div>
+
+                    <div class="map-panel">
+                        <div class="map-svg-wrap">
+                            <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice">
+                                <g stroke="rgba(255,255,255,.06)" stroke-width="1">
+                                    <line x1="0" y1="0" x2="0" y2="520"/><line x1="100" y1="0" x2="100" y2="520"/><line x1="200" y1="0" x2="200" y2="520"/><line x1="300" y1="0" x2="300" y2="520"/><line x1="400" y1="0" x2="400" y2="520"/><line x1="500" y1="0" x2="500" y2="520"/><line x1="600" y1="0" x2="600" y2="520"/><line x1="700" y1="0" x2="700" y2="520"/><line x1="800" y1="0" x2="800" y2="520"/>
+                                    <line x1="0" y1="0" x2="800" y2="0"/><line x1="0" y1="104" x2="800" y2="104"/><line x1="0" y1="208" x2="800" y2="208"/><line x1="0" y1="312" x2="800" y2="312"/><line x1="0" y1="416" x2="800" y2="416"/><line x1="0" y1="520" x2="800" y2="520"/>
+                                </g>
+                                <line x1="352" y1="300" x2="246" y2="232" stroke="rgba(255,255,255,.16)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                                <line x1="352" y1="300" x2="470" y2="372" stroke="rgba(255,255,255,.16)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                                <line x1="352" y1="300" x2="296" y2="404" stroke="rgba(255,255,255,.16)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                                <line x1="352" y1="300" x2="132" y2="408" stroke="rgba(255,255,255,.16)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                                <line x1="352" y1="300" x2="574" y2="186" stroke="rgba(255,255,255,.16)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                                <line x1="352" y1="300" x2="648" y2="108" stroke="var(--brand)" stroke-width="1.4" stroke-dasharray="4 4"/>
+                            </svg>
+                            <div class="map-pin active" data-pin="millbrook" style="left:44%;top:57.7%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="fairview" style="left:30.75%;top:44.6%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="elmwood" style="left:58.75%;top:71.5%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="sunnyvale" style="left:37%;top:77.7%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="rosetown" style="left:16.5%;top:78.5%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="saskatoon" style="left:71.75%;top:35.8%"><div class="dot"><span class="inner-dot"></span></div></div>
+                            <div class="map-pin" data-pin="airport" style="left:81%;top:20.8%"><div class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13.5l18-6.5-4 12-3.5-4.2L21 7 9.8 12.4 3 13.5Z"/></svg></div></div>
+                        </div>
+                        <div class="map-legend">
+                            <span><span class="leg-dot"></span>Home base</span>
+                            <span><span class="leg-ring"></span>Served community</span>
+                            <span><span class="leg-line"></span>Airport route</span>
+                            <span class="showing">Showing: <span id="showingArea">Millbrook</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TRUST STATS ===== -->
+        <section class="trust-sec">
+            <div class="grain"></div>
+            <div class="shell">
+                <span class="eyebrow light">Why Riders Stay</span>
+                <h2 class="sec-title" style="color:#fff">Thirteen years of showing up <span class="serif-italic" style="color:var(--brand)">on time.</span></h2>
+
+                <div class="trust-stats">
+                    <div><div class="num">13<span>+</span></div><div class="lbl">Years on the road</div></div>
+                    <div><div class="num">48<span>K+</span></div><div class="lbl">Rides completed</div></div>
+                    <div><div class="num">25<span>+</span></div><div class="lbl">Professional drivers</div></div>
+                    <div><div class="num">98<span>%</span></div><div class="lbl">On-time arrival</div></div>
+                    <div><div class="num">4.9<span>/5</span></div><div class="lbl">Average rider rating</div></div>
+                </div>
+
+                <div class="trust-feats">
+                    <span><span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20.5c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2"/></svg></span>Professional Drivers</span>
+                    <span><span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l7 2.6v5.4c0 4.2-2.9 7.6-7 9.6-4.1-2-7-5.4-7-9.6V5.8l7-2.6Z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg></span>Licensed &amp; Insured</span>
+                    <span><span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8L12 3.5Z"/></svg></span>Clean, Comfortable Vehicles</span>
+                    <span><span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>On-Time Service</span>
+                    <span><span class="t-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="2.8" y="13.5" width="3.6" height="6" rx="1.8"/><rect x="17.6" y="13.5" width="3.6" height="6" rx="1.8"/></svg></span>24/7 Support</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <section id="testimonials">
+            <div class="shell">
+                <div class="sec-head">
+                    <div>
+                        <span class="eyebrow">Reviews</span>
+                        <h2 class="sec-title">What Our Riders <span class="serif-italic" style="color:var(--brand-dark)">Say</span></h2>
+                    </div>
+                    <div class="rating-card">
+                        <span class="big">4.9</span>
+                        <div>
+                            <div class="stars">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            </div>
+                            <small>Average across 1,200+ rides</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-grid">
+                    <figure class="t-card">
+                        <div class="stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                        </div>
+                        <blockquote>Booked a 5am airport run the night before and the car was outside at 4:50. Bags loaded, coffee in the cupholder, and I was at YXE with time to spare.</blockquote>
+                        <figcaption class="t-foot">
+                            <span class="t-avatar">CF</span>
+                            <span><span class="t-name">Chase Foster</span><span class="t-role">Airport Transfer · Millbrook → YXE</span></span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="t-card">
+                        <div class="stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                        </div>
+                        <blockquote>We use Prairie Ride for every client pickup now. Clean cars, drivers in proper dress, and dispatch actually answers the phone. It makes us look good.</blockquote>
+                        <figcaption class="t-foot">
+                            <span class="t-avatar">DM</span>
+                            <span><span class="t-name">Devina Mueller</span><span class="t-role">Corporate Travel · Saskatoon</span></span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="t-card">
+                        <div class="stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95L12 2.6Z"/></svg>
+                        </div>
+                        <blockquote>Seven of us, a mountain of hockey gear and a snowstorm rolling in. The van arrived early and got us home safe. You cannot ask for more than that.</blockquote>
+                        <figcaption class="t-foot">
+                            <span class="t-avatar">JR</span>
+                            <span><span class="t-name">Jordan Rein</span><span class="t-role">Group Transportation · Rosetown</span></span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="faq-sec" id="faq">
+            <div class="shell">
+                <div class="faq-layout">
+                    <div class="faq-side">
+                        <span class="eyebrow">FAQ</span>
+                        <h2 class="sec-title">Frequently <span class="serif-italic" style="color:var(--brand-dark)">asked</span></h2>
+                        <p>Still not sure? Dispatch is awake — call or message and you will get a straight answer.</p>
+                        <div class="btn-row">
+                            <a class="btn btn-outline" href="tel:+13065550142">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 3.5h2.4l1.5 3.7-1.9 1.3a10.8 10.8 0 0 0 5.3 5.3l1.3-1.9 3.7 1.5v2.4a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+                                Call us
+                            </a>
+                            <a class="btn btn-dark" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener">
+                                <span class="glow"></span>
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="color:var(--wa)"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg>
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <ul class="faq-list" id="faqList">
+                        <li class="faq-item open">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">Do you offer airport pickup?</span><span class="qicon"></span></button>
+                            <div class="faq-a" style="max-height:220px"><div class="faq-a-in">Yes. We run scheduled transfers to and from Saskatoon John G. Diefenbaker Airport (YXE) all day, every day. Send us your flight number and we track it — if you land early or late, your driver adjusts. Airport pickups include 60 minutes of free wait time.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">How far in advance can I book?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">Same-day bookings are welcome, but we recommend booking a few hours ahead for airport runs and at least 24 hours ahead for group or corporate travel so we can guarantee your preferred vehicle.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">Can I book through WhatsApp?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">Absolutely — message us your pickup, destination, date and time, and dispatch will confirm your driver and fare within minutes.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">What payment methods are accepted?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">We accept cash, debit and credit cards, and e-transfer. Corporate accounts can also arrange monthly invoicing.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">Can I cancel my booking?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">Yes, you can cancel or reschedule free of charge up to 2 hours before pickup. Just call or message dispatch and we'll take care of it.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">Do you offer accessible vehicles?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">Yes. Our accessible van is ramp-equipped and our drivers are trained to assist, with space for up to 4 passengers plus a wheelchair.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">What areas do you serve?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">We're based in Millbrook and serve the surrounding communities including Fairview, Elmwood, Sunnyvale and Rosetown, plus daily runs to Saskatoon and the airport.</div></div>
+                        </li>
+                        <li class="faq-item">
+                            <button class="faq-q" onclick="toggleFaq(this)"><span class="qtext">How is my booking confirmed?</span><span class="qicon"></span></button>
+                            <div class="faq-a"><div class="faq-a-in">Once you book online or via WhatsApp, dispatch confirms your driver and fare by text message within minutes.</div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FINAL CTA ===== -->
+        <div class="cta-outer">
+            <div class="shell">
+                <div class="cta-box">
+                    <img src="taxi1.jpg" alt="">
+                    <div class="cta-content">
+                        <span class="eyebrow light">Ready When You Are</span>
+                        <h2>Ready for a <span>Better Ride?</span></h2>
+                        <p>Book a reliable, comfortable ride with Prairie Ride — online in a minute, or one message on WhatsApp.</p>
+                        <div class="cta-btns">
+                            <a class="btn btn-primary" href="#booking">
+                                <span class="glow"></span>
+                                Book a Ride
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
+                            </a>
+                            <a class="btn btn-glass" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="color:var(--wa)"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg>
+                                WhatsApp Us
+                            </a>
+                            <a class="tel-link" href="tel:+13065550142">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 3.5h2.4l1.5 3.7-1.9 1.3a10.8 10.8 0 0 0 5.3 5.3l1.3-1.9 3.7 1.5v2.4a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+                                +1 (306) 555-0142
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+        <div class="shell">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="logo" href="#home">
+                        <svg viewBox="0 0 32 32" fill="none" style="color:var(--brand)"><circle cx="16" cy="16" r="15" fill="currentColor" opacity=".1"/><path d="M5 21.5c3.5-6 7-9 11-9s6.5 2 8 5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="M11 26c1.6-3.4 3.6-5.6 6-6.6" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity=".45"/><circle cx="24" cy="10.5" r="3" fill="currentColor"/></svg>
+                        <span style="color:#fff">Prairie<span class="accent">Ride</span></span>
+                    </a>
+                    <p>Airport transfers, local rides and corporate travel across Millbrook and surrounding areas since 2012.</p>
+                    <address>118 Prairie Ave<br>Millbrook, SK S0K 0A1</address>
+                </div>
+
+                <nav>
+                    <h4>Explore</h4>
+                    <ul class="flinks">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#fleet">Fleet</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#service-areas">Service Areas</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </nav>
+
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="contact-list">
+                        <li><a href="tel:+13065550142"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.2 3.5h2.4l1.5 3.7-1.9 1.3a10.8 10.8 0 0 0 5.3 5.3l1.3-1.9 3.7 1.5v2.4a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2Z"/></svg>+1 (306) 555-0142</a></li>
+                        <li><a href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I'd%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--wa)"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Z"/></svg>WhatsApp</a></li>
+                        <li><a href="mailto:info@prairieride.ca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="3"/><path d="M4 7.5l8 5.5 8-5.5"/></svg>info@prairieride.ca</a></li>
+                    </ul>
+                    <dl class="hours-dl">
+                        <div><dt>Mon – Sat</dt><dd>08:00 – 18:00</dd></div>
+                        <div><dt>Sunday</dt><dd>09:00 – 18:00</dd></div>
+                        <div><dt>Dispatch</dt><dd>24 / 7</dd></div>
+                    </dl>
+                </div>
+
+                <div>
+                    <h4>Legal</h4>
+                    <ul class="flinks">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                    <div class="footer-socials">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="16.8" cy="7.2" r="1" fill="currentColor" stroke="none"/></svg></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.4h2.6l.4-3h-3V8.7c0-.9.25-1.5 1.55-1.5H17V4.5c-.3 0-1.25-.1-2.35-.1-2.3 0-3.9 1.4-3.9 4v2.2H8.2v3h2.55V21h2.75Z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2012–2026 Prairie Ride. All rights reserved.</p>
+                <p>Demo website — bookings and fares are for demonstration only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ---- MOBILE NAV ----
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('open');
+        }
+
+        // ---- HERO CAROUSEL ----
+        const slidesData = [
+            { eyebrow: "Airport Transfers", title: "Reliable Airport Rides, <span>Every Time.</span>", desc: "Comfortable, dependable transportation with professional drivers — flight-tracked pickups to and from Saskatoon (YXE)." },
+            { eyebrow: "Local &amp; Long Distance", title: "Comfortable Rides. <span>Wherever You Go.</span>", desc: "Reliable transportation across Millbrook and surrounding areas — town trips, city runs and long highway hauls." },
+            { eyebrow: "Corporate Travel", title: "Professional Travel, <span>Done Right.</span>", desc: "Client pickups, executive transfers and monthly billing — travel your business can rely on." }
+        ];
+        let heroIdx = 0;
+        const heroSlideEls = document.querySelectorAll('.hero-slide');
+        const heroDotEls = document.querySelectorAll('#heroDots button');
+
+        function renderHero() {
+            heroSlideEls.forEach((el, i) => el.classList.toggle('active', i === heroIdx));
+            heroDotEls.forEach((el, i) => el.classList.toggle('active', i === heroIdx));
+            document.getElementById('heroEyebrow').innerHTML = slidesData[heroIdx].eyebrow;
+            document.getElementById('heroTitle').innerHTML = slidesData[heroIdx].title;
+            document.getElementById('heroDesc').textContent = slidesData[heroIdx].desc;
+            document.getElementById('heroCount').textContent = "0" + (heroIdx + 1) + " / 03";
+        }
+
+        function goSlide(i) { heroIdx = i;
+            renderHero();
+            resetAutoplay(); }
+
+        function nextSlide() { heroIdx = (heroIdx + 1) % 3;
+            renderHero();
+            resetAutoplay(); }
+
+        function prevSlide() { heroIdx = (heroIdx + 2) % 3;
+            renderHero();
+            resetAutoplay(); }
+
+        let heroTimer = setInterval(nextSlide, 6000);
+
+        function resetAutoplay() { clearInterval(heroTimer);
+            heroTimer = setInterval(nextSlide, 6000); }
+
+        // ---- MARQUEE ----
+        const marqueeItems = ["Millbrook &amp; Surrounding Areas", "Airport Transfers", "Corporate Travel", "Local Rides", "Long-Distance Transportation", "Professional Drivers", "24/7 Support"];
+        const track = document.getElementById('marqueeTrack');
+        let marqueeHtml = "";
+        for (let r = 0; r < 2; r++) {
+            marqueeItems.forEach(t => { marqueeHtml += '<span class="item">' + t + '<i></i></span>'; });
+        }
+        track.innerHTML = marqueeHtml;
+
+        // ---- SERVICE AREA MAP ----
+        function selectArea(btn) {
+            document.querySelectorAll('#areaList button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const pin = btn.getAttribute('data-pin');
+            document.querySelectorAll('.map-pin').forEach(p => p.classList.toggle('active', p.getAttribute('data-pin') === pin));
+            document.getElementById('showingArea').textContent = btn.querySelector('.a-name').textContent;
+        }
+        document.querySelectorAll('.map-pin').forEach(p => {
+            p.addEventListener('click', () => {
+                const pinName = p.getAttribute('data-pin');
+                const matchBtn = document.querySelector('#areaList button[data-pin="' + pinName + '"]');
+                if (matchBtn) selectArea(matchBtn);
+            });
+        });
+
+        // ---- FAQ ACCORDION ----
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const ans = item.querySelector('.faq-a');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(it => { it.classList.remove('open');
+                it.querySelector('.faq-a').style.maxHeight = '0'; });
+            if (!isOpen) { item.classList.add('open');
+                ans.style.maxHeight = ans.scrollHeight + 'px'; }
+        }
+
+        // ---- BOOKING FORM ----
+        const waBookBtn = document.getElementById('waBookBtn');
+
+        function buildWaMessage() {
+            const pickup = document.getElementById('pickup').value || '—';
+            const destination = document.getElementById('destination').value || '—';
+            const date = document.getElementById('date').value || '—';
+            const time = document.getElementById('time').value || '—';
+            const passengers = document.getElementById('passengers').value;
+            const vehicle = document.getElementById('vehicle').value;
+            return "Hi Prairie Ride, I'd like to request a ride.\n\nPickup: " + pickup + "\nDestination: " + destination + "\nDate: " + date + "\nTime: " + time + "\nPassengers: " + passengers + "\nVehicle: " + vehicle + "\n\nThank you.";
+        }
+        ['pickup', 'destination', 'date', 'time', 'passengers', 'vehicle'].forEach(id => {
+            document.getElementById(id).addEventListener('input', () => {
+                waBookBtn.href = "https://wa.me/13065550142?text=" + encodeURIComponent(buildWaMessage());
+            });
+        });
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const bookBtn = document.getElementById('bookBtn');
+            const msgEl = document.getElementById('formMsg');
+            const waMessage = buildWaMessage();
+            bookBtn.disabled = true;
+            const originalHtml = bookBtn.innerHTML;
+            bookBtn.textContent = "Sending...";
+            fetch("https://formsubmit.co/ajax/info@prairieride.ca", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                    body: JSON.stringify({
+                        _subject: "New Ride Request — Prairie Ride Website",
+                        Pickup: document.getElementById('pickup').value,
+                        Destination: document.getElementById('destination').value,
+                        Date: document.getElementById('date').value,
+                        Time: document.getElementById('time').value,
+                        Passengers: document.getElementById('passengers').value,
+                        Vehicle: document.getElementById('vehicle').value
+                    })
+                })
+                .catch(() => {})
+                .finally(() => {
+                    window.open("https://wa.me/13065550142?text=" + encodeURIComponent(waMessage), "_blank");
+                    bookBtn.disabled = false;
+                    bookBtn.innerHTML = originalHtml;
+                    msgEl.textContent = "Request sent! We've emailed dispatch and opened WhatsApp for you.";
+                });
+        });
+
+        // ---- DATE DEFAULT ----
+        (function() {
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date();
+                const y = today.getFullYear();
+                const m = String(today.getMonth() + 1).padStart(2, '0');
+                const d = String(today.getDate() + 1).padStart(2, '0');
+                dateInput.value = y + '-' + m + '-' + d;
+                dateInput.min = y + '-' + m + '-' + d;
+            }
+        })();
+
+        // ---- HEADER SCROLL SHADOW ----
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('siteHeader');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ---- CURSOR GLOW ----
+        (function() {
+            const container = document.getElementById('cursorGlow');
+            if (!container) return;
+            const dots = container.querySelectorAll('.dot');
+            let x = 0,
+                y = 0;
+            let targetX = 0,
+                targetY = 0;
+            let isVisible = false;
+
+            function updateDots() {
+                x += (targetX - x) * 0.12;
+                y += (targetY - y) * 0.12;
+                const scale = isVisible ? 1 : 0.3;
+                const opacity = isVisible ? 1 : 0;
+                dots.forEach((dot, i) => {
+                    const offset = i * 6;
+                    dot.style.left = (x + offset) + 'px';
+                    dot.style.top = (y + offset) + 'px';
+                    dot.style.opacity = opacity * (1 - i * 0.2);
+                    dot.style.transform = 'translate(-50%,-50%) scale(' + scale + ')';
+                });
+                requestAnimationFrame(updateDots);
+            }
+            document.addEventListener('mousemove', function(e) {
+                targetX = e.clientX;
+                targetY = e.clientY;
+                isVisible = true;
+            });
+            document.addEventListener('mouseleave', function() {
+                isVisible = false;
+            });
+            updateDots();
+        })();
+    </script>
+
+</body>
+</html>
