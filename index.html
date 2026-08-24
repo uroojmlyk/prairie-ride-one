@@ -34,7 +34,7 @@ img{max-width:100%;display:block}
 .btn{
   display:inline-flex;align-items:center;gap:8px;
   border-radius:999px;padding:14px 26px;font-size:.9rem;font-weight:600;
-  transition:all .3s cubic-bezier(.22,1,.36,1);white-space:nowrap;
+  transition:all .3s cubic-bezier(.22,1,.36,1);white-space:nowrap;position:relative;isolation:isolate;
 }
 .btn svg{width:16px;height:16px;transition:transform .3s}
 .btn:hover svg{transform:translateX(3px)}
@@ -53,24 +53,78 @@ img{max-width:100%;display:block}
 }
 .icon-circle:hover{border-color:var(--wa);color:var(--wa)}
 
+/* Glow effect for buttons */
+.btn-glow {
+  position: relative;
+  isolation: isolate;
+}
+.btn-glow .glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(242, 178, 26, 0.35);
+  filter: blur(40px);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.25);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+.btn-glow:hover .glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.btn-glow:active .glow {
+  opacity: 0.6;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
 /* ===== HEADER ===== */
 header{
   position:fixed;top:0;left:0;right:0;z-index:50;
-  background:rgba(250,248,244,.88);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--sand);transition:box-shadow .4s;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease;
+}
+header.scrolled{
+  background:rgba(250,248,244,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--sand);
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
 }
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
 .logo{display:flex;align-items:center;gap:10px}
-.logo svg{width:30px;height:30px;color:var(--ink)}
-.logo span{font-weight:800;font-size:1.05rem;letter-spacing:-.03em}
-.logo .accent{color:var(--brand-dark)}
+.logo svg{width:30px;height:30px;color:#fff;transition:color 0.5s ease}
+header.scrolled .logo svg{color:var(--ink)}
+.logo span{font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff;transition:color 0.5s ease}
+header.scrolled .logo span{color:var(--ink)}
+.logo .accent{color:var(--brand);transition:color 0.5s ease}
 nav.main-nav{display:flex;gap:28px;margin-left:auto}
-nav.main-nav a{font-size:.9rem;font-weight:500;color:rgba(11,13,16,.7);transition:color .3s;position:relative}
-nav.main-nav a:hover{color:var(--brand-dark)}
+nav.main-nav a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.8);transition:color .3s;position:relative}
+header.scrolled nav.main-nav a{color:rgba(11,13,16,.7)}
+nav.main-nav a:hover{color:var(--brand)}
 .header-actions{display:flex;align-items:center;gap:10px}
-.header-tel{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:rgba(11,13,16,.75);padding:8px 10px}
+.header-tel{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:rgba(255,255,255,.85);padding:8px 10px;transition:color 0.5s ease}
+header.scrolled .header-tel{color:rgba(11,13,16,.75)}
 .header-tel svg{width:16px;height:16px}
-.menu-toggle{display:none;width:42px;height:42px;border-radius:999px;border:1.5px solid var(--sand);background:#fff;align-items:center;justify-content:center}
+.menu-toggle{
+  display:none;
+  width:42px;height:42px;
+  border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);
+  align-items:center;justify-content:center;
+  color:#fff;
+  transition:all 0.3s ease;
+}
+header.scrolled .menu-toggle{
+  border-color:var(--sand);
+  background:#fff;
+  color:var(--ink);
+}
 .menu-toggle svg{width:20px;height:20px}
 #mobileNav{
   display:none;
@@ -88,7 +142,7 @@ nav.main-nav a:hover{color:var(--brand-dark)}
   display:flex;align-items:center;justify-content:center;
   font-size:1.4rem;color:var(--ink);
 }
-#mobileNav a{display:block;padding:16px 0;border-bottom:1px solid var(--sand);font-weight:600;font-size:1rem}
+#mobileNav a{display:block;padding:16px 0;border-bottom:1px solid var(--sand);font-weight:600;font-size:1rem;color:var(--ink)}
 #mobileNav .btn{margin-top:16px;width:100%;justify-content:center}
 
 /* ===== HERO ===== */
@@ -466,7 +520,9 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
       <a class="icon-circle" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I%27d%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.42 1.28 4.86L2 22l5.32-1.34a9.9 9.9 0 0 0 4.72 1.2c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.02c-1.5 0-2.92-.4-4.16-1.1l-.3-.18-3.14.8.82-3.06-.2-.32a8.02 8.02 0 0 1-1.24-4.28c0-4.44 3.6-8.04 8.04-8.04 4.44 0 8.04 3.6 8.04 8.04 0 4.44-3.62 8.14-7.86 8.14Zm4.5-5.9c-.24-.12-1.46-.72-1.68-.8-.22-.08-.38-.12-.54.12-.16.24-.62.8-.76.96-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.42-1.34-1.66-.14-.24-.02-.38.1-.5.12-.12.26-.3.38-.46.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.24 1.02.38 1.38.5.6.18 1.14.16 1.56.1.46-.08 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>
       </a>
-      <a class="btn btn-primary" href="#booking">Book a Ride
+      <a class="btn btn-primary btn-glow" href="#booking">
+        <span class="glow"></span>
+        Book a Ride
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
       </a>
       <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
@@ -499,7 +555,9 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
     <h1 id="heroTitle">Reliable Airport Rides, <span>Every Time.</span></h1>
     <p id="heroDesc">Comfortable, dependable transportation with professional drivers — flight-tracked pickups to and from Saskatoon (YXE).</p>
     <div class="hero-btns">
-      <a class="btn btn-primary" href="#booking">Book Your Ride
+      <a class="btn btn-primary btn-glow" href="#booking">
+        <span class="glow"></span>
+        Book Your Ride
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
       </a>
       <a class="btn btn-glass" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I%27d%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener">
@@ -601,7 +659,9 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
           </div>
           <div class="f-col-5" style="display:flex;align-items:flex-end">
             <div class="booking-submit-row">
-              <button type="submit" class="btn btn-primary" id="bookBtn">Get Fare Estimate
+              <button type="submit" class="btn btn-primary btn-glow" id="bookBtn">
+                <span class="glow"></span>
+                Get Fare Estimate
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
               </button>
               <a class="btn btn-outline" id="waBookBtn" href="https://wa.me/13065550142" target="_blank" rel="noopener">
@@ -1018,7 +1078,9 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
         <h2>Ready for a <span>Better Ride?</span></h2>
         <p>Book a reliable, comfortable ride with Prairie Ride — online in a minute, or one message on WhatsApp.</p>
         <div class="cta-btns">
-          <a class="btn btn-primary" href="#booking">Book a Ride
+          <a class="btn btn-primary btn-glow" href="#booking">
+            <span class="glow"></span>
+            Book a Ride
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
           </a>
           <a class="btn btn-glass" href="https://wa.me/13065550142?text=Hi%20Prairie%20Ride%2C%20I%27d%20like%20to%20ask%20about%20a%20ride." target="_blank" rel="noopener">
@@ -1097,6 +1159,19 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
 function toggleMobileNav(){
   document.getElementById('mobileNav').classList.toggle('open');
 }
+
+/* Navbar scroll effect */
+const header = document.getElementById('siteHeader');
+let lastScroll = 0;
+window.addEventListener('scroll', function() {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  if (currentScroll > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+  lastScroll = currentScroll;
+});
 
 /* Hero carousel */
 const slidesData=[
