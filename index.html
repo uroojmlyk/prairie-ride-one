@@ -30,7 +30,7 @@ img{max-width:100%;display:block}
 .serif-italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--brand-dark)}
 .shell{max-width:1240px;margin:0 auto;padding:0 6%}
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTONS with Glow Effect ===== */
 .btn{
   display:inline-flex;align-items:center;gap:8px;
   border-radius:999px;padding:14px 26px;font-size:.9rem;font-weight:600;
@@ -53,33 +53,35 @@ img{max-width:100%;display:block}
 }
 .icon-circle:hover{border-color:var(--wa);color:var(--wa)}
 
-/* Glow effect for buttons */
+/* Glow effect for buttons - exactly like reference site */
 .btn-glow {
   position: relative;
   isolation: isolate;
+  overflow: visible;
 }
 .btn-glow .glow {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: -1;
-  width: 140px;
-  height: 140px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background: rgba(242, 178, 26, 0.35);
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(242, 178, 26, 0.5) 0%, rgba(242, 178, 26, 0) 70%);
+  filter: blur(30px);
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.25);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translate(-50%, -50%) scale(0.3);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
 }
 .btn-glow:hover .glow {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 .btn-glow:active .glow {
-  opacity: 0.6;
-  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0.7;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition-duration: 0.1s;
 }
 
 /* ===== HEADER ===== */
@@ -110,6 +112,8 @@ nav.main-nav a:hover{color:var(--brand)}
 .header-tel{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:rgba(255,255,255,.85);padding:8px 10px;transition:color 0.5s ease}
 header.scrolled .header-tel{color:rgba(11,13,16,.75)}
 .header-tel svg{width:16px;height:16px}
+
+/* ===== MENU TOGGLE - FIXED for mobile ===== */
 .menu-toggle{
   display:none;
   width:42px;height:42px;
@@ -119,6 +123,7 @@ header.scrolled .header-tel{color:rgba(11,13,16,.75)}
   align-items:center;justify-content:center;
   color:#fff;
   transition:all 0.3s ease;
+  cursor:pointer;
 }
 header.scrolled .menu-toggle{
   border-color:var(--sand);
@@ -126,6 +131,7 @@ header.scrolled .menu-toggle{
   color:var(--ink);
 }
 .menu-toggle svg{width:20px;height:20px}
+
 #mobileNav{
   display:none;
   position:fixed;top:72px;left:0;right:0;bottom:0;
@@ -141,6 +147,7 @@ header.scrolled .menu-toggle{
   background:#fff;
   display:flex;align-items:center;justify-content:center;
   font-size:1.4rem;color:var(--ink);
+  cursor:pointer;
 }
 #mobileNav a{display:block;padding:16px 0;border-bottom:1px solid var(--sand);font-weight:600;font-size:1rem;color:var(--ink)}
 #mobileNav .btn{margin-top:16px;width:100%;justify-content:center}
@@ -456,8 +463,9 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
 }
 @media(max-width:760px){
+  /* ===== MOBILE MENU TOGGLE - FIXED ===== */
   nav.main-nav,.header-tel{display:none}
-  .menu-toggle{display:flex}
+  .menu-toggle{display:flex !important}
 
   /* Hero adjustments */
   .hero{min-height:560px}
@@ -525,6 +533,7 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
         Book a Ride
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
       </a>
+      <!-- ===== HAMBURGER MENU BUTTON - VISIBLE ON MOBILE ===== -->
       <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h16M4 12.5h16M4 17.5h10"/></svg>
       </button>
@@ -1162,7 +1171,6 @@ function toggleMobileNav(){
 
 /* Navbar scroll effect */
 const header = document.getElementById('siteHeader');
-let lastScroll = 0;
 window.addEventListener('scroll', function() {
   const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
   if (currentScroll > 20) {
@@ -1170,7 +1178,6 @@ window.addEventListener('scroll', function() {
   } else {
     header.classList.remove('scrolled');
   }
-  lastScroll = currentScroll;
 });
 
 /* Hero carousel */
