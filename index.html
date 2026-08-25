@@ -98,7 +98,7 @@ header.scrolled{
   box-shadow:0 4px 20px rgba(0,0,0,0.06);
 }
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
-.logo{display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .logo svg{width:30px;height:30px;color:#fff;transition:color 0.5s ease}
 header.scrolled .logo svg{color:var(--ink)}
 .logo span{font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff;transition:color 0.5s ease}
@@ -108,10 +108,11 @@ nav.main-nav{display:flex;gap:28px;margin-left:auto}
 nav.main-nav a{font-size:.9rem;font-weight:500;color:rgba(255,255,255,.8);transition:color .3s;position:relative}
 header.scrolled nav.main-nav a{color:rgba(11,13,16,.7)}
 nav.main-nav a:hover{color:var(--brand)}
-.header-actions{display:flex;align-items:center;gap:10px}
+.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .header-tel{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:rgba(255,255,255,.85);padding:8px 10px;transition:color 0.5s ease}
 header.scrolled .header-tel{color:rgba(11,13,16,.75)}
 .header-tel svg{width:16px;height:16px}
+.btn-label-short{display:none}
 
 /* ===== MENU TOGGLE - FIXED for mobile ===== */
 .menu-toggle{
@@ -124,6 +125,7 @@ header.scrolled .header-tel{color:rgba(11,13,16,.75)}
   color:#fff;
   transition:all 0.3s ease;
   cursor:pointer;
+  flex-shrink:0;
 }
 header.scrolled .menu-toggle{
   border-color:var(--sand);
@@ -131,6 +133,14 @@ header.scrolled .menu-toggle{
   color:var(--ink);
 }
 .menu-toggle svg{width:20px;height:20px}
+
+/* Trim header actions before the hamburger breakpoint so nothing overflows and pushes the hamburger off-screen (this was why it was missing on some Android phones) */
+@media(max-width:639px){
+  .header-actions .icon-circle{display:none}
+  .header-actions .btn-primary{padding:11px 16px;font-size:.82rem;gap:6px}
+  .btn-label-full{display:none}
+  .btn-label-short{display:inline}
+}
 
 #mobileNav{
   display:none;
@@ -208,8 +218,11 @@ header.scrolled .menu-toggle{
 /* ===== BOOKING CARD ===== */
 .booking-wrap{position:relative;z-index:20;background:var(--ivory);padding-bottom:60px}
 .booking-card{
-  margin-top:-70px;background:#fff;border:1px solid var(--sand);border-radius:28px;
+  margin-top:-48px;background:#fff;border:1px solid var(--sand);border-radius:28px;
   padding:34px 28px;box-shadow:0 40px 90px -52px rgba(11,13,16,.5);
+}
+@media(min-width:1024px){
+  .booking-card{margin-top:-80px}
 }
 .booking-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
 .booking-head h2{font-size:1.55rem;font-weight:800;letter-spacing:-.02em;margin:0}
@@ -451,6 +464,22 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
 .footer-socials svg{width:16px;height:16px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.78rem;color:rgba(255,255,255,.35)}
 
+/* ===== CURSOR GLOW (yellow trail that follows the mouse, like the reference) ===== */
+.cursor-glow-layer{
+  position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;
+  opacity:0;transition:opacity .35s ease;
+}
+.cursor-glow-dot{
+  position:absolute;left:0;top:0;border-radius:999px;
+  transform:translate(-50%,-50%);will-change:transform;
+}
+.cursor-glow-dot.big{width:70px;height:70px;background:rgba(242,178,26,.22);filter:blur(22px)}
+.cursor-glow-dot.mid{width:38px;height:38px;background:rgba(242,178,26,.32);filter:blur(12px)}
+.cursor-glow-dot.lead{width:12px;height:12px;background:rgba(242,178,26,.95);filter:blur(2px)}
+@media(hover:none),(pointer:coarse){
+  .cursor-glow-layer{display:none}
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .services-layout,.area-layout,.faq-layout{grid-template-columns:1fr;gap:40px}
@@ -503,6 +532,15 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
   #mobileNav{padding-top:60px}
   #mobileNav .close-menu{top:12px}
 }
+@media(max-width:420px){
+  .header-row{gap:10px}
+  .header-actions{gap:6px}
+  .logo span{font-size:.95rem}
+  .hero h1{font-size:1.9rem}
+  .trust-stats{grid-template-columns:1fr}
+  .trust-stats>div{border-left:0;border-top:1px solid rgba(255,255,255,.1);padding-top:18px}
+  .trust-stats>div:first-child{border-top:0;padding-top:0}
+}
 </style>
 </head>
 <body>
@@ -530,7 +568,8 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
       </a>
       <a class="btn btn-primary btn-glow" href="#booking">
         <span class="glow"></span>
-        Book a Ride
+        <span class="btn-label-full">Book a Ride</span>
+        <span class="btn-label-short">Book</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h14M13 6.5l5.5 5.5L13 17.5"/></svg>
       </a>
       <!-- ===== HAMBURGER MENU BUTTON - VISIBLE ON MOBILE ===== -->
@@ -612,14 +651,14 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
             <label class="f-label">Pickup Location</label>
             <div class="f-wrap">
               <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
-              <input class="f-input" id="pickup" name="Pickup" required placeholder="Enter pickup location">
+              <input class="f-input" id="pickup" name="Pickup" required placeholder="Enter pickup location" list="pr-locations" autocomplete="off">
             </div>
           </div>
           <div class="f-col-4">
             <label class="f-label">Destination</label>
             <div class="f-wrap">
               <svg class="f-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4.5"/><path d="M6 5h9.5l-1.4 3.2 1.4 3.3H6"/></svg>
-              <input class="f-input" id="destination" name="Destination" required placeholder="Enter destination">
+              <input class="f-input" id="destination" name="Destination" required placeholder="Enter destination" list="pr-locations" autocomplete="off">
             </div>
           </div>
           <div class="f-col-2">
@@ -680,6 +719,15 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
             </div>
           </div>
         </div>
+        <datalist id="pr-locations">
+          <option value="Millbrook">
+          <option value="Fairview">
+          <option value="Elmwood">
+          <option value="Sunnyvale">
+          <option value="Rosetown">
+          <option value="Saskatoon">
+          <option value="Saskatoon Airport (YXE)">
+        </datalist>
         <p class="form-msg" id="formMsg"></p>
       </form>
     </div>
@@ -1163,6 +1211,13 @@ footer .contact-list svg{width:15px;height:15px;color:var(--brand)}
   </div>
 </footer>
 
+<!-- Cursor glow — yellow trail that follows the mouse across the whole page -->
+<div class="cursor-glow-layer" id="cursorGlow" aria-hidden="true">
+  <span class="cursor-glow-dot big"></span>
+  <span class="cursor-glow-dot mid"></span>
+  <span class="cursor-glow-dot lead"></span>
+</div>
+
 <script>
 /* Mobile nav */
 function toggleMobileNav(){
@@ -1237,6 +1292,15 @@ function toggleFaq(btn){
   if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
 }
 
+/* Date field: no picking a day before today, same as the reference site */
+(function(){
+  const dateInput=document.getElementById('date');
+  const today=new Date();
+  const iso=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+  dateInput.min=iso;
+  if(!dateInput.value) dateInput.value=iso;
+})();
+
 /* Booking form -> WhatsApp deep link + email */
 const waBookBtn=document.getElementById('waBookBtn');
 function buildWaMessage(){
@@ -1284,6 +1348,38 @@ document.getElementById('bookingForm').addEventListener('submit',function(e){
     msgEl.textContent="Request sent! We've emailed dispatch and opened WhatsApp for you.";
   });
 });
+
+/* Cursor glow — yellow blob trailing the mouse, three layered dots with easing lag */
+(function(){
+  const isCoarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if(isCoarse) return;
+  const layer=document.getElementById('cursorGlow');
+  const dots=Array.from(layer.querySelectorAll('.cursor-glow-dot'));
+  const target={x:window.innerWidth/2,y:window.innerHeight/2};
+  const cur=dots.map(()=>({x:target.x,y:target.y}));
+  const ease=[0.10,0.16,0.26];
+  let shown=false;
+
+  document.addEventListener('mousemove',function(e){
+    target.x=e.clientX;
+    target.y=e.clientY;
+    if(!shown){shown=true;layer.style.opacity='1';}
+  },{passive:true});
+
+  document.addEventListener('mouseleave',function(){
+    layer.style.opacity='0';
+  });
+
+  function raf(){
+    dots.forEach(function(dot,i){
+      cur[i].x+=(target.x-cur[i].x)*ease[i];
+      cur[i].y+=(target.y-cur[i].y)*ease[i];
+      dot.style.transform='translate('+cur[i].x+'px,'+cur[i].y+'px) translate(-50%,-50%)';
+    });
+    requestAnimationFrame(raf);
+  }
+  raf();
+})();
 </script>
 </body>
 </html>
